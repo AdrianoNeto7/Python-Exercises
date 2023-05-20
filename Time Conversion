@@ -1,0 +1,49 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+#
+# Complete the 'timeConversion' function below.
+#
+# The function is expected to return a STRING.
+# The function accepts STRING s as parameter.
+#
+
+def timeConversion(s):
+    # Write your code here
+    
+    hour = s[:2]
+    int_hour = int(hour)
+    timeDef = s[8:]
+    withoutTimeDef = s[:8]
+    new_hour = int_hour
+    
+    if timeDef == "PM":
+        if int_hour != 12:
+            new_hour = int_hour + 12
+    else:
+            if int_hour == 12:
+                new_hour = 0
+    
+    
+    military = "{:02d}".format(new_hour) + withoutTimeDef[2:]
+    
+    return military
+        
+        
+        
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    s = input()
+
+    result = timeConversion(s)
+
+    fptr.write(result + '\n')
+
+    fptr.close()
